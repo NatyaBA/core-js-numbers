@@ -223,8 +223,8 @@ function isPrime(n) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  return +value || def;
 }
 
 /**
@@ -296,8 +296,12 @@ function getSumToN(n) {
  *   5   => 5  // 5
  */
 
-function getSumOfDigits(/* num */) {
-  throw new Error('Not implemented');
+function getSumOfDigits(num) {
+  let sum = 0;
+  for (let i = 0; i < num.toString().length; i += 1) {
+    sum += +num.toString()[i];
+  }
+  return sum;
 }
 
 /**
@@ -399,8 +403,8 @@ function toPrecision(number, precision) {
  * new Number(5) => 5
  * Number(-5)    => -5
  */
-function getNumberValue(/* number */) {
-  throw new Error('Not implemented');
+function getNumberValue(number) {
+  return number.valueOf();
 }
 
 /**
@@ -447,8 +451,11 @@ function isInteger(number) {
  * '4.567abcdefgh' => 4.567
  * 'abcdefgh'      => NaN
  */
-function getFloatOnString(/* str */) {
-  throw new Error('Not implemented');
+function getFloatOnString(str) {
+  if (Number.isNaN(Number.parseFloat(str))) {
+    return NaN;
+  }
+  return parseFloat(str);
 }
 
 /**
@@ -465,8 +472,11 @@ function getFloatOnString(/* str */) {
  * '1.234', 2           => 1
  * '10', 8              => 8
  */
-function getIntegerOnString(/* str, base */) {
-  throw new Error('Not implemented');
+function getIntegerOnString(str, base) {
+  if (Number.isNaN(Number.parseInt(str, base))) {
+    return NaN;
+  }
+  return parseInt(str, base);
 }
 
 /**
